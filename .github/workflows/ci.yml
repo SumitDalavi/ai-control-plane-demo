@@ -56,6 +56,9 @@ jobs:
         run: |
           # Use local stubs for CI
           export DEMO_MODE=stub
+          npm ci --prefix ../nhi-agent-access-governance/registry-api
+          npm ci --prefix ../llm-cost-autopilot
+          npm ci --prefix ../semantic-llm-cache
           make test
           # Due to potentially missing heavy deps, we'll only enforce unit tests here,
           # or try a mock infra-up if compose is configured for CI
