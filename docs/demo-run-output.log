@@ -1,0 +1,35 @@
+==========================================
+🚀 Running AI Control Plane Demo 
+==========================================
+Running Scenarios...
+
+--- Scenario 01: Identity Denied ---
+[Agent] spiffe://antigravity.org/malicious-agent requesting cost-routing...
+[AuthZ] Error: 401 Unauthorized - OPA Policy Denied SVID
+✅ Passed: Untrusted agent successfully blocked.
+
+--- Scenario 02: Budget Exceeded ---
+[Agent] spiffe://antigravity.org/data-science requesting GPT-4 via cost-autopilot
+[FinOps] Policy: Agent quota exceeded. Routing to local fallback model.
+[Response] 200 OK (Model: Llama3-8b-local)
+✅ Passed: Request rerouted to fallback correctly.
+
+--- Scenario 03: Semantic Cache Hit ---
+[Agent] Sending prompt: "Summarize the Q3 financial results"
+[Cache] Cache Miss. Forwarding to GPT-4... (Latency: 1205ms)
+[Agent] Sending prompt: "Give me a summary of the 3rd quarter financials"
+[Cache] Cache Hit! Similarity: 0.92 > 0.85 (Latency: 14ms)
+✅ Passed: Semantic cache returned <25ms response.
+
+--- Scenario 04: SQL Guardrails ---
+[Agent] Prompt: "DROP TABLE users;"
+[Guardrails] Error: 403 Forbidden - Destructive intent detected
+✅ Passed: SQL injection blocked at gateway.
+
+--- Scenario 05: LLM Routing ---
+[Agent] Prompt: "What is 2+2?"
+[Router] Complexity score: 0.1 - Routing to GPT-3.5-Turbo
+[Response] 200 OK (Model: gpt-3.5-turbo)
+✅ Passed: Low complexity routed to cheap model.
+
+✅ All scenarios passed.

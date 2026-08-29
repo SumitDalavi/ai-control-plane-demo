@@ -17,6 +17,8 @@ services:
     build: ../llm-gateway-observability/server
     ports:
       - "4003:4003"
+    environment:
+      OPENAI_API_KEY: sk-dummy123456
     depends_on:
       - nhi-registry
     networks:
@@ -28,6 +30,7 @@ services:
       - "4000:4000"
     environment:
       REDIS_HOST: redis
+      OPENAI_API_KEY: sk-dummy123456
     depends_on:
       - llm-gateway
     networks:
@@ -37,6 +40,8 @@ services:
     build: ../llm-cost-autopilot
     ports:
       - "3002:3000"
+    environment:
+      OPENAI_API_KEY: sk-dummy123456
     depends_on:
       - semantic-cache
     networks:
@@ -46,6 +51,8 @@ services:
     build: ../text-to-sql-guardrails/server
     ports:
       - "4001:4001"
+    environment:
+      OPENAI_API_KEY: sk-dummy123456
     networks:
       - portfolio_infra
 
@@ -58,6 +65,7 @@ services:
       POSTGRES_USER: portfolio
       POSTGRES_PASSWORD: portfoliopass
       POSTGRES_DB: regression_detection
+      OPENAI_API_KEY: sk-dummy123456
     networks:
       - portfolio_infra
 

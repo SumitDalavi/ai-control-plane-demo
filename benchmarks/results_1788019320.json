@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-08-29T16:01:44.209692Z",
+  "metrics": {
+    "semantic_cache": {
+      "cache_miss_latency_s": 0,
+      "cache_hit_latency_s": 0,
+      "latency_improvement_percent": 0.0,
+      "x_cache_hit_verified": false
+    },
+    "cost_router": {
+      "simple_prompt_model": "unknown",
+      "complex_prompt_model": "unknown"
+    }
+  }
+}

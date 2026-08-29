@@ -16,6 +16,7 @@ def make_request(url, payload):
         headers = e.headers
         status = e.code
     except Exception as e:
+        print(f"Exception during request to {url}: {e}")
         return {"error": str(e)}, 0, 500, {}
     end = time.time()
     
@@ -32,7 +33,7 @@ results = {
 }
 
 # 1. Semantic Cache Test
-cache_url = "http://localhost:4000/v1/chat/completions"
+cache_url = "http://127.0.0.1:4000/v1/chat/completions"
 prompt = {"messages": [{"role": "user", "content": "What is the speed of light?"}]}
 
 # Miss
@@ -48,7 +49,7 @@ results["metrics"]["semantic_cache"] = {
 }
 
 # 2. Cost Router Test
-router_url = "http://localhost:3002/v1/completions"
+router_url = "http://127.0.0.1:3002/v1/completions"
 simple_prompt = {"prompt": "Say hello"}
 complex_prompt = {"prompt": "Write a complete complex react application from scratch"}
 
