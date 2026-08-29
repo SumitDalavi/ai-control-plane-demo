@@ -95,3 +95,32 @@ jobs:
           # make demo
           # make verify
           # make down
+
+  benchmark:
+    name: Run Benchmark Harness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Start services
+        run: |
+          docker network create portfolio_infra || true
+          docker compose -f ../docker-compose.infra.yml up -d postgres redis || true
+          docker compose up -d
+          sleep 15
+      - name: Run benchmark
+        run: |
+          mkdir -p benchmarks/results
+          python benchmarks/benchmark.py || true
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results-${{ github.sha }}
+          path: benchmarks/
+          retention-days: 90
+      - name: Teardown
+        if: always()
+        run: docker compose down -v
