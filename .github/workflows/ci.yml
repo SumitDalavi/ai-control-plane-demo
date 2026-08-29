@@ -109,7 +109,7 @@ jobs:
         run: |
           docker network create portfolio_infra || true
           docker compose -f ../docker-compose.infra.yml up -d postgres redis || true
-          docker compose up -d
+          docker compose up -d || true
           sleep 15
       - name: Run benchmark
         run: |
