@@ -12,10 +12,11 @@ X-Frame-Options: SAMEORIGIN
 X-Permitted-Cross-Domain-Policies: none
 X-XSS-Protection: 0
 Access-Control-Allow-Origin: *
-X-Cache-Hit: false
+X-Cache-Hit: true
+X-Cache-Similarity: 1.0000
 Content-Type: application/json; charset=utf-8
-Content-Length: 386
-ETag: W/"182-HztoADK6jaRvvp8umLYahDDhnyc"
+Content-Length: 460
+ETag: W/"1cc-khaUjaEdzx6X3VxfQRuCt0hS4No"
 Date: Sat, 29 Aug 2026 19:33:52 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5

@@ -29,7 +29,7 @@ services:
     ports:
       - "4000:4000"
     environment:
-      REDIS_HOST: redis
+      REDIS_URL: redis://redis:6379
       OPENAI_API_KEY: sk-dummy123456
     depends_on:
       - llm-gateway
