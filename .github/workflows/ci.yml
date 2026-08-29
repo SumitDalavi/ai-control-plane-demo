@@ -17,7 +17,7 @@ jobs:
           POSTGRES_PASSWORD: password
           POSTGRES_DB: registry
         ports:
-          - 5432:5432
+          - 5433:5432
         options: >-
           --health-cmd "pg_isready -U postgres"
           --health-interval 10s
@@ -69,7 +69,9 @@ jobs:
         working-directory: ai-control-plane-demo
         env:
           POSTGRES_HOST: 127.0.0.1
+          POSTGRES_PORT: 5433
           POSTGRES_DB: registry
+          POSTGRES_PASSWORD: password
         run: |
           # Use local stubs for CI
           export DEMO_MODE=stub
