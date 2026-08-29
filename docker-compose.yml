@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  nhi-registry:
+    build: ../nhi-agent-access-governance/registry-api
+    ports:
+      - "3001:3001"
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: portfoliopass
+      POSTGRES_DB: nhi_registry
+    networks:
+      - portfolio_infra
+
+  llm-gateway:
+    build: ../llm-gateway-observability/server
+    ports:
+      - "4003:4003"
+    depends_on:
+      - nhi-registry
+    networks:
+      - portfolio_infra
+
+  semantic-cache:
+    build: ../semantic-llm-cache
+    ports:
+      - "4000:4000"
+    environment:
+      REDIS_HOST: redis
+    depends_on:
+      - llm-gateway
+    networks:
+      - portfolio_infra
+
+  cost-autopilot:
+    build: ../llm-cost-autopilot
+    ports:
+      - "3002:3000"
+    depends_on:
+      - semantic-cache
+    networks:
+      - portfolio_infra
+
+  sql-guardrails:
+    build: ../text-to-sql-guardrails/server
+    ports:
+      - "4001:4001"
+    networks:
+      - portfolio_infra
+
+  regression-detection:
+    build: ../model-regression-detection
+    ports:
+      - "5001:3000"
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: portfoliopass
+      POSTGRES_DB: regression_detection
+    networks:
+      - portfolio_infra
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9091:9090"
+    depends_on:
+      - semantic-cache
+    networks:
+      - portfolio_infra
+
+networks:
+  portfolio_infra:
+    external: true

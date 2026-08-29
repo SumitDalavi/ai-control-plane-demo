@@ -1,0 +1,14 @@
+{
+    "timestamp":  "2026-08-29T10:00:00Z",
+    "scenarios_run":  5,
+    "metrics":  {
+                    "latency_p50_ms":  120,
+                    "latency_p99_ms":  450,
+                    "cache_hit_rate":  0.42,
+                    "false_hit_rate":  0.01,
+                    "cost_delta_percentage":  -34.5
+                },
+    "status":  "success",
+    "notes":  "Dummy benchmark results generated for demo purposes.",
+    "illustrative":  true
+}

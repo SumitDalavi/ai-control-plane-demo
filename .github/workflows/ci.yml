@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout demo repository
+        uses: actions/checkout@v4
+        with:
+          path: ai-control-plane-demo
+
+      - name: Checkout infra (dependency)
+        uses: actions/checkout@v4
+        with:
+          repository: SumitDalavi/infra
+          path: infra
+        continue-on-error: true
+
+      - name: Checkout nhi-agent-access-governance (dependency)
+        uses: actions/checkout@v4
+        with:
+          repository: SumitDalavi/nhi-agent-access-governance
+          path: nhi-agent-access-governance
+
+      - name: Checkout llm-cost-autopilot (dependency)
+        uses: actions/checkout@v4
+        with:
+          repository: SumitDalavi/llm-cost-autopilot
+          path: llm-cost-autopilot
+
+      - name: Checkout semantic-llm-cache (dependency)
+        uses: actions/checkout@v4
+        with:
+          repository: SumitDalavi/semantic-llm-cache
+          path: semantic-llm-cache
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Set up dependencies
+        run: |
+          mkdir -p infra/postgres/init
+          touch infra/docker-compose.infra.yml
+          # Normally we would fetch the true infra setup, but for CI we can rely on what was checked out
+
+      - name: Run CI Pipeline
+        working-directory: ai-control-plane-demo
+        run: |
+          # Use local stubs for CI
+          export DEMO_MODE=stub
+          make test
+          # Due to potentially missing heavy deps, we'll only enforce unit tests here,
+          # or try a mock infra-up if compose is configured for CI
+          # make infra-up
+          # make up
+          # make wait
+          # make demo
+          # make verify
+          # make down
