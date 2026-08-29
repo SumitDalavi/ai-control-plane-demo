@@ -78,7 +78,10 @@ jobs:
           export DEMO_MODE=stub
           
           # Initialize database
-          psql -h 127.0.0.1 -p 5433 -U postgres -d registry -f ../nhi-agent-access-governance/scripts/init.sql
+          psql -v ON_ERROR_STOP=1 -h 127.0.0.1 -p 5433 -U postgres -d registry -f ../nhi-agent-access-governance/scripts/init.sql
+          
+          # Verify database tables
+          psql -h 127.0.0.1 -p 5433 -U postgres -d registry -c "\dt"
           
           npm ci --prefix ../nhi-agent-access-governance/registry-api
           npm ci --prefix ../llm-cost-autopilot
