@@ -67,6 +67,9 @@ jobs:
 
       - name: Run CI Pipeline
         working-directory: ai-control-plane-demo
+        env:
+          POSTGRES_HOST: 127.0.0.1
+          POSTGRES_DB: registry
         run: |
           # Use local stubs for CI
           export DEMO_MODE=stub
