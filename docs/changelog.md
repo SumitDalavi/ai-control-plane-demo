@@ -16,3 +16,5 @@
 - Added verifiable, reproducible E2E integration tests captured in run-history.
 - Refined README.md presentation and architectural documentation.
 
+### Fixed (Post-Release)
+- Fixed CI benchmark step to gracefully handle missing dependencies in isolated repository checkouts.
