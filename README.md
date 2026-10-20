@@ -1,8 +1,10 @@
 # AI Control Plane
 
-[![Release](https://img.shields.io/github/v/release/SumitDalavi/ai-control-plane-demo)](https://github.com/SumitDalavi/ai-control-plane-demo/releases)
+[![CI Pipeline](https://github.com/SumitDalavi/ai-control-plane-demo/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/SumitDalavi/ai-control-plane-demo/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/SumitDalavi/ai-control-plane-demo?color=0969da&label=release&logo=github)](https://github.com/SumitDalavi/ai-control-plane-demo/releases)
 [![Release Workflow](https://github.com/SumitDalavi/ai-control-plane-demo/actions/workflows/release.yml/badge.svg)](https://github.com/SumitDalavi/ai-control-plane-demo/actions/workflows/release.yml)
-
+[![SBOM](https://img.shields.io/badge/SBOM-SPDX%202.3-blueviolet?logo=spdx)](https://github.com/SumitDalavi/ai-control-plane-demo/releases/tag/v0.2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 > **Maturity:** Functional Prototype
 
