@@ -6,9 +6,7 @@
 [![SBOM](https://img.shields.io/badge/SBOM-SPDX%202.3-blueviolet?logo=spdx)](https://github.com/SumitDalavi/ai-control-plane-demo/releases/tag/v0.2.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-> **Maturity:** Functional Prototype
-
-This composition ties together the NHI Registry, LLM Gateway, Semantic Cache, Cost Autopilot, SQL Guardrails, and Model Regression Detection into a single end-to-end integration demo.
+> This enterprise composition ties together the NHI Registry, LLM Gateway, Semantic Cache, Cost Autopilot, SQL Guardrails, and Model Regression Detection into a single end-to-end integration control plane.
 
 ## Prerequisites
 - Docker and Docker Compose
